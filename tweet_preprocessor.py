@@ -10,7 +10,6 @@ import emoji
 from unidecode import unidecode
 from enelvo import normaliser
 
-
 class TweetPreprocessor:
     def __init__(self):
         self.norm = normaliser.Normaliser()
@@ -38,7 +37,8 @@ class TweetPreprocessor:
 
     def relevant_text(self, tweet):
         doc = self.nlp(tweet)
-        if any(token.pos_ in {"NOUN", "ADJ", "INTJ", "VERB"} for token in doc):
+        relevant_tokens = [token for token in doc if token.pos_ in {"NOUN", "ADJ", "INTJ", "VERB"}]
+        if len(relevant_tokens) >= 5:
             return tweet
         return None
     
