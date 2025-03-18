@@ -23,6 +23,7 @@ class TweetPreprocessor:
         return unidecode(tweet)
 
     def remove_noises(self, tweet):
+        tweet = re.sub(r"\brt\b|\bretweet\b", '', tweet, flags=re.IGNORECASE)
         tweet = re.sub(r"@[A-Za-z0-9_]+", ' ', tweet)
         tweet = re.sub(r'#\w+', '', tweet)
         tweet = re.sub(r'https?://\S+', '', tweet)
