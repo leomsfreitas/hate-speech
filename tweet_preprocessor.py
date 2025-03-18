@@ -37,7 +37,7 @@ class TweetPreprocessor:
 
     def relevant_text(self, tweet):
         doc = self.nlp(tweet)
-        relevant_tokens = [token for token in doc if token.pos_ in {"NOUN", "ADJ", "INTJ", "VERB"}]
+        relevant_tokens = [token for token in doc if token.pos_ in {"NOUN", "ADJ", "ADV", "VERB"}]
         if len(relevant_tokens) >= 5:
             return tweet
         return None
